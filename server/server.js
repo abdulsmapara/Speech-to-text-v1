@@ -14,7 +14,7 @@ var sdk = require("microsoft-cognitiveservices-speech-sdk");
 // service region (e.g., "westus"), and
 // the name of the file you want to run
 // through the speech recognizer.
-var subscriptionKey = "9e48f5d03e9c46aa89e3f5d11cc15cdb";
+var subscriptionKey = "";
 var serviceRegion = "westus"; // e.g., "westus"
 
 // create the push stream we need for the speech sdk.
