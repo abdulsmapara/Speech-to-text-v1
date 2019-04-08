@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 256M
+  name: Speech_to_text_PKS
+  command: node server.js
+  instances: 1
+  domain: mybluemix.net
+  host: myBluemixApp
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  disk_quota: 1024M
