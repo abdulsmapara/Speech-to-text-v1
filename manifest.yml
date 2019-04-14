@@ -3,7 +3,7 @@ applications:
   memory: 256M
   name: Speech_to_text_ASM
   instances: 1
-  domain: mybluemix.net
-  host: myBluemixApp
+  host: abdulsmapara
+  random-route: false
   buildpack: https://github.com/cloudfoundry/nodejs-buildpack
   disk_quota: 1024M

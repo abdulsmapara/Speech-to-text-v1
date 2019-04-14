@@ -18,9 +18,10 @@ var subscriptionKey = "9e48f5d03e9c46aa89e3f5d11cc15cdb";
 var serviceRegion = "westus"; // e.g., "westus"
 
 // create the push stream we need for the speech sdk.
-var pushStream = sdk.AudioInputStream.createPushStream();
 
-    
+
+
+var port_no =process.env.PORT || 3000;
 app.use(validator());
 
 app.use(bodyparser.urlencoded({
@@ -31,7 +32,7 @@ app.use('/',express.static('/home/abdulsmapara/Speech-to-Text/public'));
 
 app.use(function (req, res, next) {
 
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin', '');
 
     res.setHeader('Access-Control-Allow-Methods', 'POST', 'GET');
 
@@ -90,6 +91,13 @@ app.get('/downloadSpeech',function (req,res) {
 });
 
 app.post('/speechToText',function(req,res){
+
+    var pushStream = sdk.AudioInputStream.createPushStream();
+    if (!fs.existsSync('uploads/'))
+    {
+        fs.mkdirSync('uploads/');
+    }
+
     var upload = upload_module.uploadFile('speech[]', './uploads/');
     upload(req, res, function (err) {
         if (err) {
@@ -131,7 +139,7 @@ app.post('/speechToText',function(req,res){
             } else {
                 recognizer.close();
                 recognizer = undefined;
-                res.redirect("http://localhost:3000/downloadSpeech?orgfile=" + fname + "&confile=Speech.txt");
+                res.redirect("/downloadSpeech?orgfile=" + fname + "&confile=Speech.txt");
                 
             }
         });
@@ -154,4 +162,6 @@ app.post('/speechToText',function(req,res){
     });
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
+
+//http://abdulsmapara.eu-gb.mybluemix.net/
